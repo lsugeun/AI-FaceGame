@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 400px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .rank {
+            width: 50px;
+        }
+
+        .player {
+            width: 200px;
+        }
+
+        .score {
+            width: 100px;
+        }
+
+        .back-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .back-button a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ranking</h1>
+    <table>
+        <tr>
+            <th class="rank">Rank</th>
+            <th class="player">Player</th>
+            <th class="score">Score</th>
+        </tr>
+        {% for rank, player, score in ranking %}
+            <tr>
+                <td class="rank">{{ rank }}</td>
+                <td class="player">{{ player }}</td>
+                <td class="score">{{ score }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="back-button">
+        <a href="/">Back to Game</a>
+    </div>
+</body>
+</html>

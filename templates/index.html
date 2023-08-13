@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .ranking-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: absolute;  /* 절대 위치 지정 */
+            top: 30px;          /* 상단으로부터의 거리 */
+            left: 200px;        /* 우측으로부터의 거리 */
+         }
+
+    </style>
+</head>
+<body>
+    <h1>Face Game</h1>
+
+    <button class="ranking-button" onclick="viewRanking()">View Ranking</button>
+
+    <img src="{{ url_for('video_feed') }}" width="720" height="720" />
+
+    <script>
+        function viewRanking() {
+            window.location.href = "/ranking";
+        }
+
+        $(document).ready(function() {
+            $(document).keydown(function(event) {
+                if (event.which === 82) { // 'r' 키
+                    $.ajax({
+                        url: "/reset_game",
+                        type: "POST",
+                        success: function(response) {
+                            console.log(response);
+                        }
+                    });
+                } else if (event.which === 27) { // 'ESC' 키
+                    $.ajax({
+                        url: "/pause_game",
+                        type: "POST",
+                        success: function(response) {
+                            console.log("stop");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
